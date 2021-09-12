@@ -18,13 +18,19 @@ def recherche(nom):
 def chemins_affichage(path):
 	i = 0
 	printable_path = ""
-	for i in range(len(path)):
-		printable_path = printable_path + path[i] + " "
+	if (len(path) > 1):
+		for i in range(len(path)):
+			if (i == len(path) - 1):
+				printable_path = printable_path + path[i]
+			else:
+				printable_path = printable_path + path[i] + " "
+	else:
+		printale_path = path
 	return printable_path
 
-#bot_1
-pos_x = 0
-pos_y = 0
+#bot_1 - Searcher
 nom = "searcher"
 path = recherche(nom)#Fonction de scan de la première couche
 print("effectivement, les chemins",chemins_affichage(path), "sont à explorer")
+
+#bot_2 - Explorer
