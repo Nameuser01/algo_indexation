@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import random
+
 def recherche(nom):
 	firstline = open('map.txt', 'r')
 	file_content = firstline.readlines()
@@ -29,6 +31,44 @@ def chemins_affichage(path):
 	else:
 		printale_path = path
 	return printable_path
+
+def map_init():
+	x_size = -1#Strictement positif
+	y_size = -1#axe ordonnées inversé (vers le bas mais strictement positif)
+	while(x_size <= 0 or x_size > 10):
+		x_size = int(input("Valeur de x ?\n> "))
+	while(y_size <= 0 or y_size > 1000):#Unge!
+		y_size = int(input("Valeur de y ?\n> "))
+	#print("On va créer une map de x",x_size,"par",y_size)
+	map_generation(x_size, y_size)
+
+def map_generation(x, y):
+	print("On va créer une map de x",x,"par",y)
+	i = 0
+	a = 0
+	compo_line = ""
+	for a in range(y):
+		for i in range(x):
+			rand_num = random.randrange(0, 100, 1)#Gedanken für Zukunft (Anderen values Bspl)
+			print("random number:",rand_num)
+			if (rand_num > 50):#Häufigkeit des Auftretens von punkten
+				compo_line = compo_line + "."
+			else:
+				compo_line = compo_line + "*"
+		register_line(compo_line, a)
+		compo_line = ""
+
+def register_line(compo_line, a):
+	if(a == 1):
+		file_w = ("foo.txt", "w")
+	else:
+		file_w = ("foo.txt", "a")
+	file_w.write(compo_line)
+	file_w.close()
+
+#Map file génération
+map_init()
+
 
 #bot_1 - Searcher
 nom = "searcher"
